@@ -1,0 +1,536 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jsp/include/taglib.jsp"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<%@ include file="/WEB-INF/jsp/include/scriptlib.jsp"%>
+	<%@ include file="/WEB-INF/jsp/include/meta.jsp"%>
+<style type="text/css">
+.searchBox {
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.leftContents {
+	padding: 10px;
+	height:90%;
+	padding: 10px;
+	overflow: auto;
+
+}
+.middleContents {
+	width:30%;
+	height: 100%;
+	float:left;
+	border:1px solid blue;
+	margin-right: 20px;
+	overflow: auto;
+}
+.rightContents {
+	width:30%;
+	height: 100%;
+	float:left;
+	border:1px solid green;
+	overflow: auto;
+}
+
+#searchList {
+	padding: 10px;
+}
+
+#searchList li {
+	list-style-type: none;
+}
+#stationRouteList a .busline-type04 {
+	height: 81px;
+	width: 6px;
+	border-left: 1px solid #d2d7d9;
+	border-right: 1px solid #d2d7d9;
+	background: #55aeed;
+	position: absolute;
+	right: 59px;
+	top: -1px;
+}
+.dir_2 {
+	width: 40px;
+	height: 40px;
+	background: url(../images/bus/direction.png) no-repeat 0 0;
+	background-size: 20px auto;
+}
+.circle-pos_2 {
+	position: absolute;
+	right: 32px;
+	top: 29px;
+	z-index: 10;
+}
+.bus-g {
+	width: 40px;
+	height: 60px;
+	background: url(../images/bus/bus_icon.png) no-repeat 0 0;
+	background-size: 25px auto;
+}
+.circle-pos-bus_3 {
+	position: absolute;
+	right: 35px;
+	top: 58px;
+	z-index: 30;
+}
+.blySpan {
+	position: absolute;
+	left: -9999px;
+}
+</style>
+</head>
+<body>
+	<div style="width: 98%; padding: 10px; height: 800px; border:1px solid black;">
+
+		<div style="width:35%;height: 100%; float:left; border:1px solid red;margin-right: 20px;">
+			<div class="searchBox">
+				<input type="text" id="txtSearch" />
+				<input type="button" id="btnSearch" value="검색" />
+				<!--
+				<div class="input-group mb-3">
+				  	<input type="text" class="form-control" placeholder="정류소명 / 버스번호" aria-label="Recipient's username" aria-describedby="button-addon2">
+				  	<div class="input-group-append">
+				    	<button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+				  	</div>
+				</div>
+				 -->
+			</div>
+			<div class="leftContents">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+				  	<li class="nav-item">
+				    	<a class="nav-link active" id="bus-tab" data-toggle="tab" href="#bus" role="tab" aria-controls="bus" aria-selected="true">버스</a>
+				  	</li>
+				  	<li class="nav-item">
+				    	<a class="nav-link" id="station-tab" data-toggle="tab" href="#station" role="tab" aria-controls="station" aria-selected="false">정류장</a>
+				  	</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="bus" role="tabpanel" aria-labelledby="bus-tab">
+						<div id="routeList" class="list-group">
+						<!--
+							<a href="#" class="list-group-item list-group-item-action">
+								<div class="d-flex w-100 justify-content-between">
+									<h5 class="mb-1">88</h5>
+						    	</div>
+						    	<p class="mb-1">용인시 일반버스</p>
+						  	</a>
+						  	<a href="#" class="list-group-item list-group-item-action">
+						    	<div class="d-flex w-100 justify-content-between">
+						      		<h5 class="mb-1">88</h5>
+						    	</div>
+						    	<p class="mb-1">안양시 일반버스</p>
+						  	</a>
+						  	<a href="#" class="list-group-item list-group-item-action">
+						    	<div class="d-flex w-100 justify-content-between">
+						      		<h5 class="mb-1">88</h5>
+						    	</div>
+						    	<p class="mb-1">부천시 일반버스</p>
+						  	</a>
+						  	 -->
+						</div>
+					</div>
+					<div class="tab-pane fade" id="station" role="tabpanel" aria-labelledby="station-tab">
+						<div id="stationList" class="list-group">
+						<!--
+							<a href="javascript:void(0);" class="list-group-item list-group-item-action">
+								<div class="d-flex w-100 justify-content-between">
+									<h5 class="mb-1">부천역.국민은행</h5>
+						    	</div>
+						    	<p class="mb-1">11278 | 46008 | 부천대입구 방면</p>
+						  	</a>
+						  	<a href="javascript:void(0);" class="list-group-item list-group-item-action">
+						    	<div class="d-flex w-100 justify-content-between">
+						      		<h5 class="mb-1">부천남중</h5>
+						    	</div>
+						    	<p class="mb-1">11278 | 46008 | 부천대입구 방면</p>
+						  	</a>
+						  	<a href="javascript:void(0);" class="list-group-item list-group-item-action">
+						    	<div class="d-flex w-100 justify-content-between">
+						      		<h5 class="mb-1">부천역</h5>
+						    	</div>
+						    	<p class="mb-1">11278 | 46008 | 부천대입구 방면</p>
+						  	</a>
+						  	 -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="middleContents">
+			<div id="arriveRouteList" class="list-group">
+				<!--
+				<a href="javascript:void(0);" class="list-group-item list-group-item-action">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">88</h5>
+						<middle>1분 10초 <small>1번째전 여유</small></middle>
+			    	</div>
+			    	<div class="d-flex w-100 justify-content-between">
+						<h7 class="mb-1">부천대입구 방면</h7>
+						<middle>1분 10초 <small>1번째전 여유</small></middle>
+			    	</div>
+			  	</a>
+			  	<a href="javascript:void(0);" class="list-group-item list-group-item-action">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">88</h5>
+						<middle>1분 10초 <small>1번째전 여유</small></middle>
+			    	</div>
+			    	<div class="d-flex w-100 justify-content-between">
+						<h7 class="mb-1">부천대입구 방면</h7>
+						<middle>1분 10초 <small>1번째전 여유</small></middle>
+			    	</div>
+			  	</a>
+			  	<a href="javascript:void(0);" class="list-group-item list-group-item-action">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">88</h5>
+						<middle>1분 10초 <small>1번째전 여유</small></middle>
+			    	</div>
+			    	<div class="d-flex w-100 justify-content-between">
+						<h7 class="mb-1">부천대입구 방면</h7>
+						<middle>1분 10초 <small>1번째전 여유</small></middle>
+			    	</div>
+			  	</a>
+			  	 -->
+			</div>
+		</div>
+
+		<div class="rightContents">
+			<div id="stationRouteList" class="list-group">
+				<a href="javascript:void(0);" class="list-group-item list-group-item-action">
+					<div id="dirN" class="dir_2 circle-pos_2"></div>
+					<div id="line" class="busline-type04"></div>
+					<div id="busIcon" class="bus-g  circle-pos-bus_3">
+<!--
+						<div class="density-pos blyDensity1">
+							<span class="blySpan">여유</span>
+						</div>
+
+						<span class="blySpan"></span>
+						<span class="bly7 bly7-pos">경기71<br>아3646</span>
+						<span class="blySpan"> 차량 정류소를 출발</span>
+ -->
+					</div>
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">부천역.국민은행</h5>
+					</div>
+					<p class="mb-1">11278 | 46008 | 06:55~01:30</p>
+				</a>
+				<a href="javascript:void(0);" class="list-group-item list-group-item-action">
+					<div id="dirN" class="dir_2 circle-pos_2"></div>
+					<div id="line" class="busline-type04"></div>
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">부천역.국민은행</h5>
+					</div>
+					<p class="mb-1">11278 | 46008 | 06:55~01:30</p>
+				</a>
+				<a href="javascript:void(0);" class="list-group-item list-group-item-action">
+					<div id="dirN" class="dir_2 circle-pos_2"></div>
+					<div id="line" class="busline-type04"></div>
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">부천역.국민은행</h5>
+					</div>
+					<p class="mb-1">11278 | 46008 | 06:55~01:30</p>
+				</a>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</body>
+<script type="text/javascript" >
+var _page = null;
+$(document).ready(function(){
+	_page = new fn_page();
+	_page.initialize();
+});
+
+function fn_page() {
+
+	this.initialize = function() {
+		_page.initializeEvent();
+	};
+
+	this.initializeEvent = function() {
+		$('#txtSearch').on('keyup',function(e){
+			if ( e.which == 13 ) {
+				e.preventDefault();
+			    e.stopPropagation();
+			    _page.search();
+			}
+		});
+
+		$("#btnSearch").on("click", function() {
+			_page.search();
+		});
+	};
+
+	this.search = function() {
+		var param = {};
+		param.param1 = $("#txtSearch").val();
+
+		$.igframework.ajax({
+			url: "/main/sel"
+			,data: param
+			,callback : function(data) {
+				$("#arriveRouteList").empty();
+				$("#stationRouteList").empty();
+
+				var resultStation = data.sStation;
+				var resultRoute = data.sRoute;
+
+				_page.makeStationHtml(resultStation);
+				_page.makeRouteHtml(resultRoute);
+			}
+		});
+	};
+
+	// 정류소 리스트(정류소명 검색시)
+	this.makeStationHtml = function(resultList) {
+		$("#stationList").empty();
+		if(resultList.length > 0) {
+
+			function customSort(a, b) {
+				if(a.stationName == b.stationName){ return 0}
+
+				return  a.stationName > b.stationName ? 1 : -1;
+			}
+
+			resultList.sort(customSort);
+			var html = "";
+			$.each(resultList, function () {
+				var obj = this;
+
+				html += '<a href="javascript:void(0);" onclick="_page.searchArriveRouteList(this);" ';
+				html += ' data-arsId=' + obj.arsId;
+				html += ' data-stationId=' + obj.stationId;
+				html += ' data-serviceType=' + obj.serviceType;
+				html += ' class="list-group-item list-group-item-action">';
+				html += 	'<div class="d-flex w-100 justify-content-between">';
+				html +=  		'<h5 class="mb-1">' + obj.stationName + '</h5>';
+				html +=		'</div>';
+				html +=		'<p class="mb-1">'+ obj.arsId +' | 부천대입구 방면</p>';
+				html += '</a>';
+			});
+
+			$("#stationList").html(html);
+		}
+		else{
+			var html = "검색결과가 없습니다.";
+			$("#stationList").html(html);
+		}
+	};
+
+	// 버스 리스트(버스 번호 검색시)
+	this.makeRouteHtml = function(resultList) {
+		$("#routeList").empty();
+
+		if(resultList.length > 0) {
+			var html = "";
+
+			$.each(resultList, function () {
+				var obj = this;
+				html += '<a href="javascript:void(0);" onclick="_page.searchStationRouteList(this);" ';
+				html += ' data-routeId=' + obj.routeId;
+				html += ' data-serviceType=' + obj.serviceType;
+				html += ' class="list-group-item list-group-item-action">';
+				html += 	'<div class="d-flex w-100 justify-content-between">';
+				html +=  		'<h5 class="mb-1">' + obj.routeName + '</h5>';
+				html +=		'</div>';
+				html +=		'<p class="mb-1">'+ obj.routeId + ' / ' + obj.routeTypeName +'</p>';
+				html += '</a>';
+			});
+
+			$("#routeList").html(html);
+		}
+		else{
+			var html = "검색결과가 없습니다.";
+			$("#routeList").html(html);
+		}
+	};
+
+
+	// 초
+	function convert(str) {
+		var mIndex = str.indexOf("분");
+		var sIndex = str.indexOf("초");
+		var minute = parseInt(str.substring(0,mIndex));
+		var second = parseInt(str.substring(mIndex+1,str.length-1));
+		var result = "";
+
+		var sStIndex = str.indexOf("[");
+		var eStIndex = str.indexOf("]");
+		var stationCntTxt = "";
+		var stationCnt = 0;
+
+		if(sStIndex > -1){
+			stationCntTxt = str.substring(sStIndex,eStIndex+1);
+		}
+
+		if(isNaN(minute)) {
+			minute = 0;
+		}
+
+		if(isNaN(second)) {
+			second = 0;
+		}
+
+		if(str.indexOf("분") > -1){
+
+			if(minute == 0 && second == 0){
+				result = "도착 또는 출발";
+			}
+			else if(minute > 0 && second == 0) {
+				minute--;
+				second = 59;
+			}
+			else {
+				second--;
+			}
+			result = (result == "" ? minute + "분" + second + "초" + stationCntTxt: result)
+		}
+		else {
+			result = str;
+		}
+
+		return result;
+
+	}
+
+
+	// 정류소 도착예정 버스 정보 조회 ajax
+	var timer;
+	this.searchArriveRouteList = function(obj) {
+		var param = {};
+		param.param1 = $(obj).attr("data-arsId");
+		param.param2 = $(obj).attr("data-stationId");
+		param.serviceType = $(obj).attr("data-serviceType");
+
+		$.igframework.ajax({
+			url: "/main/selarriveroutelist"
+			,data: param
+			,callback : function(data) {
+				$("#stationRouteList").empty();
+
+				_page.makeArriveRouteHtml(data.arriveRouteList, $(obj).attr("data-stationId"));
+
+				clearInterval(timer);
+				timer = window.setInterval(function() {
+
+					$(".arrTime").each(function() {
+						var str = $(this).text();
+						$(this).text(convert(str));
+					});
+
+				}, 1000);
+			}
+		});
+	};
+
+	// 정류소에 도착예정 버스 정보 html
+	this.makeArriveRouteHtml = function(resultList, stationId) {
+		$("#arriveRouteList").empty();
+
+		if(resultList.length > 0) {
+			var html = "";
+			$.each(resultList, function () {
+				var obj = this;
+
+				html += '<a href="javascript:void(0);" onclick="_page.searchStationRouteList(this);" ';
+				html += ' data-routeId=' + obj.routeId;
+				html += ' data-serviceType=' + obj.serviceType;
+				html += ' data-stationId=' + (obj.stationId == null ? stationId : obj.stationId);
+				html += ' class="list-group-item list-group-item-action">';
+				html += 	'<div class="d-flex w-100 justify-content-between">';
+				html +=  		'<h5 class="mb-1">' + obj.routeName + '</h5>';
+				html +=  		'<middle class="arrTime">' + $.igframework.parseTime(obj.arrvTime1, obj.locationNo1) + '<middle>';
+				html +=		'</div>';
+				html += 	'<div class="d-flex w-100 justify-content-between">';
+				html +=  		'<h6 class="mb-1">' + obj.nextStationName + ' 방향</h6>';
+				html +=  		'<middle class="arrTime">'  + $.igframework.parseTime(obj.arrvTime2, obj.locationNo2) + '<middle>';
+				html +=		'</div>';
+				html += '</a>';
+			});
+
+			$("#arriveRouteList").html(html);
+		}
+		else{
+			var html = "검색결과가 없습니다.";
+			$("#arriveRouteList").html(html);
+		}
+	};
+
+	function fnMove(stationId){
+		// list-group-item-success
+		if(stationId != undefined && stationId != null){
+			$(".rightContents").scrollTop(0);
+			if($("#" + stationId).length > 0) {
+				var offset = $("#" + stationId).offset();
+				//$('html, body').animate({scrollTop : offset.top}, 400);
+				var height = $(".rightContents").height() / 2;
+				//$('.rightContents').animate({scrollTop : offset.top - height}, 400);
+				$(".rightContents").scrollTop(offset.top - height + 50);
+			}
+
+			$("#stationRouteList a").removeClass("list-group-item-success");
+			$("#" + stationId).addClass("list-group-item-success");
+		}
+	}
+
+	// 버스 고유ID로 해당 노선이 경유하는 정류소 목록 조회
+	this.searchStationRouteList = function(obj) {
+
+		var param = {};
+		param.param1 = $(obj).attr("data-routeId");
+		param.serviceType = $(obj).attr("data-serviceType");
+
+		$.igframework.ajax({
+			url: "/main/selstationlist"
+			,data: param
+			,callback : function(data) {
+
+				_page.makeStationRouteHtml(data.stationRouteList);
+
+				fnMove($(obj).attr("data-stationId"));
+			}
+		});
+	};
+
+	// 버스 고유ID로 경유하는 정류소 목록 조회 html
+	this.makeStationRouteHtml = function(resultList) {
+		$("#stationRouteList").empty();
+
+		if(resultList.length > 0) {
+
+			var html = "";
+			$.each(resultList, function () {
+				var obj = this;
+				html += '<a href="javascript:void(0);" onclick="_page.searchArriveRouteList(this);"' ;
+				html += ' data-arsId=' + obj.arsId;
+				html += ' data-stationId=' + obj.stationId;
+				html += ' data-serviceType=' + obj.serviceType;
+				html += ' class="list-group-item list-group-item-action" id="' + obj.stationId +'">'
+				html += 	'<div id="dirN" class="dir_2 circle-pos_2"></div>';
+				html += 	'<div id="line" class="busline-type04"></div>';
+				html += 	'<div class="d-flex w-100 justify-content-between">';
+				html +=  		'<h5 class="mb-1">' + obj.stationName + '</h5>';
+				html +=		'</div>';
+				html += 	'<p class="mb-1">' + obj.arsId +' | ' + obj.beginTm + '~'+ obj.lastTm +'</p>';
+				html += '</a>';
+			});
+
+			$("#stationRouteList").html(html);
+		}
+		else{
+			var html = "검색결과가 없습니다.";
+			$("#stationRouteList").html(html);
+		}
+	};
+}
+
+
+
+</script>
+</html>

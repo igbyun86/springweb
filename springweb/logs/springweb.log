@@ -1,0 +1,4 @@
+2020-02-08 23:39:25,142  INFO [org.springframework.web.context.ContextLoader] Root WebApplicationContext: initialization started
+2020-02-08 23:39:26,649  INFO [org.springframework.web.context.ContextLoader] Root WebApplicationContext initialized in 1494 ms
+2020-02-08 23:39:26,764  INFO [org.springframework.web.servlet.DispatcherServlet] Initializing Servlet 'action'
+2020-02-08 23:39:28,565  INFO [org.springframework.web.servlet.DispatcherServlet] Completed initialization in 1801 ms

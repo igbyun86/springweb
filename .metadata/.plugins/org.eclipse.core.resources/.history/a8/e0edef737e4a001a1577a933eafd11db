@@ -1,0 +1,14 @@
+package com.springweb.main;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class MainController {
+
+	@RequestMapping(method = RequestMethod.GET, value="/login")
+	public String main(@RequestParam Map<String,Object> paramMap, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		return "/comm/main";
+	}
+
+}

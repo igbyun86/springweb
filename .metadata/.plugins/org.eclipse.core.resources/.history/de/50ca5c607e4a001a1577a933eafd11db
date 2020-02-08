@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+#loading-frame {
+    position:fixed; _position:absolute; _z-index:-1;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(5,5,5,0,1);
+    z-index: 99001;
+    overflow: hidden;
+    filter: alpha(opacity=70);
+    opacity: 0.70;
+}
+
+#loading-frame .window {
+    position: fixed !important;
+    position: absolute;
+/*    background: url("../img/);
+    background-repeat: no-repeat;
+    */
+    left: 50%;
+    top: 40%;
+    width: 132px;
+    height: 75px;
+    z-index: 9999;
+    margin-left:-70px;
+    margin-top:-75px;
+
+}
