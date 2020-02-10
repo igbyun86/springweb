@@ -21,37 +21,46 @@
 		$("#loading-frame").hide();
 	};
 
-	$.igframework.parseTime = function(arrvTime, arrvPreStationCnt) {
-		var result = "";
+	var __tmpr__ = 0;
+	$.igframework.filedownload = function(url, jsonData){
+		__tmpr__++;
+		var target = 'exceliframe'+__tmpr__;
+		var $iframe = $("<iframe name='" + target+ "' border='0' width='0' height='0' />");
+		$("body").append($iframe);
+		var jsonString = JSON.stringify(jsonData);
 
-		if (arrvTime == 0 && arrvPreStationCnt == 0) {
-			result = "도착정보없음";
+		var dynamicForm = $("<form/>").attr({ method: 'post', action: url, target: target });
+		dynamicForm.append($("<input/>").attr({ name: "__json__data", value: jsonString }));
 
-			return result;
-		}
+		$("body").append(dynamicForm);
 
-		if (Number(arrvTime) > 0) {
-			var minute = parseInt(arrvTime / 60);
-			var second = arrvTime % 60;
-			result = minute + "분" + second + "초";
-			result += "[" + arrvPreStationCnt + "번째전]";
-		}
+		dynamicForm.submit();
+		dynamicForm.remove();
+	};
 
-		/*
-		var mIndex = strArriveInfo.indexOf("분");
-		if(mIndex > -1){
-			var sIndex = strArriveInfo.indexOf("초후");
-			result.time = strArriveInfo.substring(0,mIndex) + "분" + strArriveInfo.substring(mIndex+1,sIndex) + "초";
+	$.igframework.EXCELDOWN = function(options){
+		var defaultOption = {
+				header : "",
+				title : "",
+				url : "",
+				fileName : "",
+				sheetName : ""
+		};
 
-			var tIndex = strArriveInfo.indexOf("[");
-			result.info = strArriveInfo.substring(tIndex+1, strArriveInfo.length-1);
-		}
-		else{
-			result.time = strArriveInfo;
-			result.info = "";
-		}
-		 */
-		return result;
+		options = $.extend(true,{}, defaultOption, options);
+
+		var headData = {
+				"title" : options.title,			//title
+				"header" : options.header,			//header
+				"fileName" : options.fileName,
+				"sheetName" : options.sheetName
+		};
+
+		var parameter = {};
+		parameter["headData"] = headData;
+
+		var url = options.url;
+		$.igframework.filedownload(url,parameter);
 	};
 
 })(jQuery);
