@@ -25,7 +25,7 @@
 			<AppenderRef ref="console" />
 			<AppenderRef ref="rollingFile" />
 		</Logger>
-		<Logger name="com.bus" level="DEBUG" additivity="false">
+		<Logger name="com.springweb" level="DEBUG" additivity="false">
 			<AppenderRef ref="console" />
 			<AppenderRef ref="rollingFile" />
 		</Logger>

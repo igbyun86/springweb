@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springweb.excel.service.mapper.ExcelMapper">
+
+
+	<!--
+		CREATE TABLE TEMP_TABLE (
+		  COL1		VARCHAR2(20)		NULL,
+		  COL2		VARCHAR2(20)		NULL,
+		  COL3		VARCHAR2(20)		NULL,
+		  COL4		VARCHAR2(20)		NULL,
+		  COL5		VARCHAR2(20)		NULL,
+		  COL6		VARCHAR2(20)		NULL,
+		  COL7		VARCHAR2(20)		NULL,
+		  COL8		VARCHAR2(20)		NULL,
+		  COL9		VARCHAR2(20)		NULL,
+		  COL10		VARCHAR2(20)		NULL
+		)
+	 -->
+
+	<select id="downloadExcel" parameterType="java.util.Map" resultType="java.util.Map">
+
+		SELECT *
+		FROM TEMP_TABLE
+	</select>
+
+</mapper>
