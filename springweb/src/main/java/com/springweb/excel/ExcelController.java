@@ -38,8 +38,6 @@ public class ExcelController {
 	@RequestMapping(method = RequestMethod.GET, value = { "", "/" })
 	public String initialPage(Model model) throws Exception {
 
-		Map<String, Object> map = new HashMap<String, Object>();
-
 		return "/excel/excelDown";
 	}
 
