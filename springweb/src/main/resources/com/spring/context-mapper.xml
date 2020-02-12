@@ -11,9 +11,13 @@
 		<property name="mapperLocations" value="classpath:/com/sqlmap/mappers/**/*.xml" />
 	</bean>
 
+
 	<!-- MapperConfigurer setup for MyBatis Database Layer with @Mapper("deptMapper") in DeptMapper Interface -->
+	<!--
+		basePackage가 1나 이상인 경우 CONFIG_LOCATION_DELIMITERS = ",; \t\n";
+	-->
 	 <bean class="com.springweb.framework.dataaccess.mapper.MapperConfigurer">
-		<property name="basePackage" value="com.springweb.**.service.mapper" />
+		<property name="basePackage" value="com.springweb.**.service.mapper;com.springweb.batch.**.mapper" />
 	</bean>
 
 </beans>

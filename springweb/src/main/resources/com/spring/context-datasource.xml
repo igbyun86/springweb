@@ -3,6 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
+
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="resourceRef" value="true" />
+		<property name="jndiName" value="jdbc/springweb" />
+	</bean>
+<!--
 	<bean id="dataSourceSpied" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="resourceRef" value="true" />
 		<property name="jndiName" value="jdbc/springweb" />
@@ -16,7 +22,7 @@
 			</bean>
 		</property>
 	</bean>
-
-
+ -->
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" />
 
 </beans>
