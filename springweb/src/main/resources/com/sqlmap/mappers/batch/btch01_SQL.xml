@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springweb.batch.btch01.mapper.Btch01Mapper">
+
+	<!-- temp 테이블 조회 -->
+	<select id="selTempData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT *
+		FROM TEMP_TABLE
+	</select>
+
+	<!-- temp 테이블2 등록 -->
+	<insert id="insTempData2" parameterType="java.util.Map">
+		INSERT INTO TEMP_TABLE2
+		(
+			COL1
+			,COL2
+			,COL3
+			,COL4
+			,COL5
+			,COL6
+			,COL7
+			,COL8
+			,COL9
+			,COL10
+		)
+		VALUES
+		(
+			#{COL1}
+			,#{COL2}
+			,#{COL3}
+			,#{COL4}
+			,#{COL5}
+			,#{COL6}
+			,#{COL7}
+			,#{COL8}
+			,#{COL9}
+			,#{COL10}
+		)
+
+	</insert>
+
+
+</mapper>
