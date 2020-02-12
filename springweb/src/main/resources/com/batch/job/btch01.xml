@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
+
+	<import resource="abstract/springBase.xml" />
+
+	<!-- <job id="btch01Job" xmlns="http://www.springframework.org/schema/batch"> -->
+	<job id="btch01Job" parent="springBaseJob" xmlns="http://www.springframework.org/schema/batch">
+		<step id="btch01Step" parent="springBaseStep">
+			<tasklet>
+				<chunk	reader="btch01Job.btch01Step.btch01Reader"
+						writer="btch01Job.btch01Step.btch01Writer"
+						commit-interval="10000" />
+			</tasklet>
+		</step>
+	</job>
+	<!-- processor="batchJobExam01Job.batchJobExam01Step.itemProcessor" -->
+
+	<!-- batch reader -->
+	<bean id="btch01Job.btch01Step.btch01Reader" class="org.mybatis.spring.batch.MyBatisCursorItemReader" scope="step">
+		<property name="sqlSessionFactory" ref="sqlSession" />
+		<property name="queryId" value="com.springweb.batch.btch01.mapper.Btch01Mapper.selTempData" />
+	</bean>
+
+	<!-- batch writer -->
+	<bean id="btch01Job.btch01Step.btch01Writer" class="org.mybatis.spring.batch.MyBatisBatchItemWriter" scope="step">
+		<property name="sqlSessionFactory" ref="sqlSession" />
+		<property name="statementId" value="com.springweb.batch.btch01.mapper.Btch01Mapper.insTempData2" />
+	</bean>
+
+	<!-- <bean id="batchJobExam01Job.batchJobExam01Step.itemProcessor" class="com.springweb.batch.job01.JobExam01Process" /> -->
+
+</beans>
