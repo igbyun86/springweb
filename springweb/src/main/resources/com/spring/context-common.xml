@@ -25,6 +25,7 @@
 	</context:component-scan>
 
 
+	<bean id="quartzScheduler" class="com.springweb.quartz.QuartzScheduler" />
 
 
 </beans>

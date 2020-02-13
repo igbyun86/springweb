@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.springweb.bctr.service.BatchRunService;
 
+/**
+ * spring batch / quartz + spring batch 실행 컨트롤러
+ * @author big
+ *
+ */
 @Controller
 @RequestMapping("/batch")
 public class BatchRunController {
@@ -36,10 +41,15 @@ public class BatchRunController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value="/batchrun")
-	public void selLine(Model model, @RequestBody Map<String, Object> paramMap) throws Exception {
+	public void batchRun(Model model, @RequestBody Map<String, Object> paramMap) throws Exception {
 		batchRunService.batchRun(paramMap);
 	}
 
+
+	@RequestMapping(method = RequestMethod.POST, value="/quartzrun")
+	public void quartzRun(Model model, @RequestBody Map<String, Object> paramMap) throws Exception {
+		batchRunService.quartzRun(paramMap);
+	}
 
 
 }

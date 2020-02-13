@@ -10,7 +10,14 @@ import org.springframework.stereotype.Service;
 
 import com.springweb.bctr.service.BatchRunService;
 import com.springweb.framework.batch.SpringBatchRunner;
+import com.springweb.framework.util.StringUtil;
+import com.springweb.quartz.QuartzScheduler;
 
+/**
+ * spring batch / quartz + spring batch 실행 Service 구현
+ * @author big
+ *
+ */
 @Service(value="batchRunService")
 public class BatchRunServiceImpl implements BatchRunService {
 
@@ -19,8 +26,16 @@ public class BatchRunServiceImpl implements BatchRunService {
 	@Resource(name="springBatchRunner")
 	private SpringBatchRunner springBatchRunner;
 
+	@Resource(name="quartzScheduler")
+	private QuartzScheduler quartzScheduler;
+
+
+	/**
+	 * spring batch 실행
+	 */
 	@Override
 	public void batchRun(Map<String, Object> paramMap) throws Exception {
+		String batchJobId = StringUtil.toString(paramMap.get("batchJobId"));
 
 		String param = springBatchRunner.createUniqueJobParameters();
 		/*
@@ -29,12 +44,24 @@ public class BatchRunServiceImpl implements BatchRunService {
 					.toJobParameters();
 */
 		try {
-			springBatchRunner.start("btch01Job", param);
+			springBatchRunner.start(batchJobId, param);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
-
-
 	}
 
+	/**
+	 * quartz + spring batch 실행
+	 */
+	@Override
+	public void quartzRun(Map<String, Object> paramMap) throws Exception {
+		try {
+
+			// quartz 실행
+			quartzScheduler.start(paramMap);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
