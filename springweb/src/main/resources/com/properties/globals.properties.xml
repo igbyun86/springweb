@@ -6,7 +6,7 @@
 	<!-- 개발  Local/Dev/Run -->
 	<entry key="Status">Local</entry>
 
-
+	<entry key="Globals.Page.Title">spring web</entry>
 
 
 </properties>
