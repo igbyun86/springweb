@@ -239,6 +239,19 @@
 			<version>2.3.1</version>
 		</dependency>
 
+		<!-- The Apache Commons IO library contains utility classes, stream implementations, file filters, file comparators, endian transformation classes, and much more -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<!-- package of Java utility classes for the classes that are in java.lang's hierarchy -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.9</version>
+		</dependency>
 
 
 		<dependency>
