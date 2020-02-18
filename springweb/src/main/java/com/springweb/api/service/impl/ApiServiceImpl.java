@@ -24,18 +24,18 @@ public class ApiServiceImpl implements ApiService {
 	}
 
 	@Override
-	public void insApiData(Map<String, Object> ParamMap) throws Exception {
-		apiMapper.insApiData(ParamMap);
+	public void insApiData(EmpVO empVO) throws Exception {
+		apiMapper.insApiData(empVO);
 	}
 
 	@Override
-	public void updApiData(Map<String, Object> ParamMap) throws Exception {
-		apiMapper.updApiData(ParamMap);
+	public void updApiData(EmpVO empVO) throws Exception {
+		apiMapper.updApiData(empVO);
 	}
 
 	@Override
-	public void delApiData(Map<String, Object> ParamMap) throws Exception {
-		apiMapper.delApiData(ParamMap);
+	public void delApiData(String empno) throws Exception {
+		apiMapper.delApiData(empno);
 	}
 
 }

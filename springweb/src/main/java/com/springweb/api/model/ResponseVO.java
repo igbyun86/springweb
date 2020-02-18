@@ -1,14 +1,27 @@
 package com.springweb.api.model;
 
-public class ResponseVO {
+import java.io.Serializable;
 
+public class ResponseVO implements Serializable {
 
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 243420094193973071L;
+
+	/**
+	 * 결과코드(00: 성공, 99: 에러)
+	 */
 	private String resultCd;
 
-	private String resultMessage;
-
+	/**
+	 * 에러코드
+	 */
 	private String errCd;
 
+	/**
+	 * 에러메시지
+	 */
 	private String errMsg;
 
 
@@ -18,14 +31,6 @@ public class ResponseVO {
 
 	public void setResultCd(String resultCd) {
 		this.resultCd = resultCd;
-	}
-
-	public String getResultMessage() {
-		return resultMessage;
-	}
-
-	public void setResultMessage(String resultMessage) {
-		this.resultMessage = resultMessage;
 	}
 
 	public String getErrCd() {

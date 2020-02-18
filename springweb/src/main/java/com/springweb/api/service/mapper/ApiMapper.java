@@ -10,24 +10,24 @@ import com.springweb.framework.dataaccess.mapper.Mapper;
 public interface ApiMapper {
 
 	/**
-	 * Api data 조회
+	 * 사원 정보 조회
 	 * @return
 	 */
 	public List<EmpVO> selApiData(Map<String, Object> ParamMap) throws Exception;
 
 	/**
-	 * Api data 등록
+	 * 사원 정보 등록
 	 */
-	public void insApiData(Map<String, Object> ParamMap)  throws Exception;
+	public void insApiData(EmpVO empVO)  throws Exception;
 
 	/**
-	 * Api data 수정
+	 * 사원 정보 수정
 	 */
-	public void updApiData(Map<String, Object> ParamMap)  throws Exception;
+	public void updApiData(EmpVO empVO)  throws Exception;
 
 	/**
-	 * Api data 삭제
+	 * 사원 정보 삭제
 	 */
-	public void delApiData(Map<String, Object> ParamMap) throws Exception;
+	public void delApiData(String empno) throws Exception;
 
 }

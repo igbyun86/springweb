@@ -3,6 +3,7 @@
 <mapper namespace="com.springweb.api.service.mapper.ApiMapper">
 
 
+	<!-- Api data 조회 -->
 	<select id="selApiData" parameterType="java.util.Map" resultType="com.springweb.api.model.EmpVO">
 		SELECT	EMPNO
 				,EMPNO_NM
@@ -11,12 +12,12 @@
 				,PAY_AMT
 		FROM	EMPLOYEE
 		<if test="EMPNO != null and EMPNO != ''">
-		WHERE	EMPNO = #{EMPNO}
+		WHERE	EMPNO = #{empno}
 		</if>
 	</select>
 
-
-	<insert id="insApiData" parameterType="java.util.Map">
+	<!-- Api data 등록 -->
+	<insert id="insApiData" parameterType="com.springweb.api.model.EmpVO">
 		INSERT INTO EMPLOYEE
 		(
 			EMPNO
@@ -27,26 +28,34 @@
 		)
 		VALUES
 		(
-			#{EMPNO}
-			,#{EMPNO_NM}
-			,#{DEPT_CD}
-			,#{DEPT_NM}
-			,#{PAY_AMT}
+			#{empno}
+			,#{empno_nm}
+			,#{dept_cd}
+			,#{dept_nm}
+			,#{pay_amt}
 		)
 	</insert>
 
-	<update id="updApiData" parameterType="java.util.Map">
+	<!-- Api data 수정 -->
+	<update id="updApiData" parameterType="com.springweb.api.model.EmpVO">
 		UPDATE	EMPLOYEE
-		SET		DEPT_CD = #{DEPT_CD}
-				,DEPT_NM = #{DEPT_NM}
-				,PAY_AMT = #{PAY_AMT}
-		WHERE	EMPNO = #{EMPNO}
+		SET		DEPT_CD = CASE
+							WHEN #{dept_cd} IS NULL THEN DEPT_CD
+							ELSE #{dept_cd}
+						END
+				,DEPT_NM = CASE
+							WHEN #{dept_nm} IS NULL THEN DEPT_NM
+							ELSE #{dept_nm}
+						END
+				,PAY_AMT = #{pay_amt}
+		WHERE	EMPNO = #{empno}
 
 	</update>
 
-	<delete id="delApiData" parameterType="java.util.Map">
+	<!-- Api data 삭제 -->
+	<delete id="delApiData" parameterType="String">
 		DELETE FROM EMPLOYEE
-		WHERE EMPNO = #{EMPNO}
+		WHERE EMPNO = #{empno}
 	</delete>
 
 

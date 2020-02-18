@@ -1,6 +1,13 @@
 package com.springweb.api.model;
 
-public class EmpVO {
+import java.io.Serializable;
+
+public class EmpVO implements Serializable {
+
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -6036731877271761712L;
 
 	/**
 	 * 사번
