@@ -1,4 +1,6 @@
 /.metadata/
 /.recommenders/
-/springweb/logs/
-/springweb/target/
+logs/
+.classpath
+.settings/
+target/
