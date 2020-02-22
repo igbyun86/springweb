@@ -41,6 +41,15 @@
 	<!-- <mvc:resources location="/favicon.ico" mapping="/favicon.ico" /> -->
 
 
+	<!-- interceptor 설정 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.springweb.comm.interceptor.AuthenticInterceptor">
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="order" value="1" />
 		<property name="contentNegotiationManager">
