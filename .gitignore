@@ -4,3 +4,5 @@ logs/
 .classpath
 .settings/
 target/
+Servers/
+.project
