@@ -31,7 +31,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			throw new BadCredentialsException("아이디와 비밀번호가 일치하지 않습니다.");
 		}
 
-		Map<String, Object> userMap = new HashMap<>();
+		Map<String, String> userMap = new HashMap<>();
+		userMap.put("empno", user_id);
 
 
 		return (Authentication)new UsernamePasswordAuthenticationToken(userMap, "", new ArrayList());
