@@ -25,7 +25,14 @@
 	</context:component-scan>
 
 
+	<!-- Quartz 실행을 위한 bean -->
 	<bean id="quartzScheduler" class="com.springweb.quartz.QuartzScheduler" />
+
+
+	<!-- error 처리를 위한 bean -->
+	<bean id="exceptionResolver" class="com.springweb.comm.resolver.ExceptionResolver" />
+
+
 
 
 </beans>
