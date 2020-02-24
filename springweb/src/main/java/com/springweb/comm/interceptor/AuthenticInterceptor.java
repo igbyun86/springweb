@@ -9,6 +9,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.springweb.comm.vo.UserInfo;
+import com.springweb.framework.exception.AuthException;
+import com.springweb.framework.util.SessionUtil;
+
 public class AuthenticInterceptor extends HandlerInterceptorAdapter {
 
 	protected final Logger log = LogManager.getLogger();
@@ -21,6 +25,15 @@ public class AuthenticInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 
 		log.debug("Controller 호출 전 실행");
+
+		/**
+		 * session 체크
+		 */
+		UserInfo userInfo = SessionUtil.getUserInfo();
+		if (userInfo == null) {
+			throw new AuthException();
+		}
+
 
 		return true;
 	}
