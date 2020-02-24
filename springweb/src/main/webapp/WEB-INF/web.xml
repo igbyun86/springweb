@@ -94,7 +94,7 @@
 	<!-- error페이지 경로 설정 -->
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
-		<location>/error.jsp</location>
+		<location>/WEB-INF/jsp/comm/exception.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>403</error-code>
