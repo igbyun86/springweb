@@ -48,4 +48,28 @@ public class StringUtil {
 
 		return false;
 	}
+
+	/**
+	 * 원본 문자열의 포함된 특정 문자열을 새로운 문자열로 변환하는 메서드
+	 * @param source 원본 문자열
+	 * @param subject 원본 문자열에 포함된 특정 문자열
+	 * @param object 변환할 문자열
+	 * @return sb.toString() 새로운 문자열로 변환된 문자열
+	 */
+	public static String replace(String source, String subject, String object) {
+		StringBuffer rtnStr = new StringBuffer();
+		String preStr = "";
+		String nextStr = source;
+		String srcStr = source;
+
+		while (srcStr.indexOf(subject) >= 0) {
+			preStr = srcStr.substring(0, srcStr.indexOf(subject));
+			nextStr = srcStr.substring(srcStr.indexOf(subject) + subject.length(), srcStr.length());
+			srcStr = nextStr;
+			rtnStr.append(preStr).append(object);
+		}
+		rtnStr.append(nextStr);
+
+		return rtnStr.toString();
+	}
 }
