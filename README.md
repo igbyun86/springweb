@@ -1,5 +1,4 @@
-# springweb
-Spring Web Project 기능 구현
+# Spring Web Project 기능 구현
 
 
 1. SOAP 웹서비스
@@ -18,8 +17,6 @@ Spring Web Project 기능 구현
 
 
 향후 추가 기능 목록
-- 메인화면/메뉴
-- 게시판
 - cache
 - webSocket
 ...
