@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/jsp/include/scriptlib.jsp"%>
 	<%@ include file="/WEB-INF/jsp/include/meta.jsp"%>
+	<%@ include file="/WEB-INF/jsp/include/scriptlib.jsp"%>
 
 	<style type="text/css">
 		.content { height: 500px; }

@@ -22,20 +22,29 @@
 	};
 
 	var __tmpr__ = 0;
-	$.igframework.filedownload = function(url, jsonData){
+	$.igframework.filedownload = function(url, jsonData, addData){
 		__tmpr__++;
 		var target = 'exceliframe'+__tmpr__;
-		var $iframe = $("<iframe name='" + target+ "' border='0' width='0' height='0' />");
+		var $iframe = $("<iframe name='" + target+ "' width='0' height='0' style='display: none;' />");
 		$("body").append($iframe);
 		var jsonString = JSON.stringify(jsonData);
 
 		var dynamicForm = $("<form/>").attr({ method: 'post', action: url, target: target });
 		dynamicForm.append($("<input/>").attr({ name: "__json__data", value: jsonString }));
 
-		$("body").append(dynamicForm);
+		// csrf
+		var csrf_token = $('meta[name="_csrf"]').attr('content');
+		dynamicForm.append($("<input/>").attr({ name: "_csrf", value: csrf_token }));
+
+		for (key in addData) {
+			dynamicForm.append($("<input/>").attr({ name: key, value: addData[key] }));
+		}
+
+		$iframe.append(dynamicForm);
 
 		dynamicForm.submit();
 		dynamicForm.remove();
+		//$iframe.remove();
 	};
 
 	$.igframework.EXCELDOWN = function(options){
@@ -60,7 +69,7 @@
 		parameter["headData"] = headData;
 
 		var url = options.url;
-		$.igframework.filedownload(url,parameter);
+		$.igframework.filedownload(url,parameter, {});
 	};
 
 })(jQuery);

@@ -27,10 +27,13 @@
 			,url: mergeOptions.url
 			,data: jsonString//mergeOptions.data
 			,async: mergeOptions.async
-			,beforeSend: function() {
+			,beforeSend: function(xhr) {
 				if(mergeOptions.cover) {
 					$.igframework.showProgressBar();
 				}
+				var header = $('meta[name="_csrf_header"]').attr('content');
+				var token = $('meta[name="_csrf"]').attr('content');
+				xhr.setRequestHeader(header, token);
 			}
 			,success: function (responseData, responseStatus, jqXHR) {
 				if (responseData.IsError) {

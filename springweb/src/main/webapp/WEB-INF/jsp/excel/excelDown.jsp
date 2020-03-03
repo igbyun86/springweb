@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/jsp/include/scriptlib.jsp"%>
 	<%@ include file="/WEB-INF/jsp/include/meta.jsp"%>
+	<%@ include file="/WEB-INF/jsp/include/scriptlib.jsp"%>
 </head>
 <body>
 	<input type="button" id="excelDown" value="Excel 다운" />
@@ -20,7 +20,6 @@ var initCtl = function() {
 			url : "/excel/exceldown",
 			fileName : "대용량excel_down",
 			sheetName : "excel data"
-
 		});
 	});
 };
