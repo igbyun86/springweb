@@ -29,7 +29,7 @@ public class BatchRunController {
 	private BatchRunService batchRunService;
 
 	/**
-	 * 엑셀 다운로드 페이지
+	 * batch 실행 페이지
 	 * @param model
 	 * @return
 	 * @throws Exception
