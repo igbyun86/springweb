@@ -3,6 +3,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
+<link rel="stylesheet" type="text/css" href="/css/common.css" />
+
 <link rel="stylesheet" type="text/css" href="/css/jquery/jquery-ui-1.11.2.css" />
 
 <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css" />
@@ -11,6 +13,8 @@
 
 <script type="text/javaScript" src="/js/jquery/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="/js/jquery/jquery-ui-1.11.2.min.js"></script>
+
+<script type="text/javascript" src="/js/vue/vue.js"></script>
 
 <script type="text/javascript" src="/js/igframework/igframework.js?1=1"></script>
 <script type="text/javascript" src="/js/igframework/igframework.ajax.js"></script>
