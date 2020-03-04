@@ -24,7 +24,7 @@ public class AuthenticInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		log.debug("Controller 호출 전 실행");
+		//log.debug("Controller 호출 전 실행");
 
 		/**
 		 * session 체크
@@ -45,7 +45,7 @@ public class AuthenticInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			@Nullable ModelAndView modelAndView) throws Exception {
 
-		log.debug("Controller가 수행되고 화면이 보여지기 전 실행");
+		//log.debug("Controller가 수행되고 화면이 보여지기 전 실행");
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class AuthenticInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
 			@Nullable Exception ex) throws Exception {
-		log.debug("클라이언트에 뷰를 통해 응답을 전송한뒤 실행");
+		//log.debug("클라이언트에 뷰를 통해 응답을 전송한뒤 실행");
 	}
 
 
