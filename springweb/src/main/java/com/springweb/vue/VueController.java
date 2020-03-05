@@ -20,7 +20,11 @@ public class VueController {
 		return "/vue/vue";
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value="/vueex1")
+	public String vue(@RequestParam Map<String,Object> paramMap, ModelMap model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		return "/vue/vueEx1";
+	}
 
 
 }
