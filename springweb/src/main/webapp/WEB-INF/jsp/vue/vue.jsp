@@ -23,6 +23,18 @@
 	.space-line{
 		height: 15px;
 	}
+	li {
+		list-style: none;
+		margin: 10px 15px;
+	}
+	li a {
+		color: #212529;
+		font-size: 18px;
+
+	}
+	li a:hover {
+		text-decoration: none;
+	}
 </style>
 </head>
 <body onload="pageLoad();">
@@ -30,11 +42,19 @@
 		<h2>Vue Example</h2>
 		<hr>
 		<div class="left-vue-content">
-			<a href="javascript:void(0);" data-menu="exam01">1. Html Binding</a>
+			<ul id="menu-list">
+				<li><a href="javascript:void(0);" data-menu="app-1">1. Html Binding</a></li>
+				<li><a href="javascript:void(0);" data-menu="app-2">2. Attribute Binding</a></li>
+				<li><a href="javascript:void(0);" data-menu="app-3">3. if</a></li>
+				<li><a href="javascript:void(0);" data-menu="app-4">4. for</a></li>
+				<li><a href="javascript:void(0);" data-menu="app-5">5. click event</a></li>
+				<li><a href="javascript:void(0);" data-menu="app-6">6. form input binding</a></li>
+				<li><a href="javascript:void(0);" data-menu="app-7">7. Component</a></li>
+			</ul>
 		</div>
 		<div class="example-content">
-			<h5 id="exam01">1. Html Binding</h5>
-			<div id="app">
+			<h5>1. Html Binding</h5>
+			<div id="app-1">
 				{{ message }}
 			</div>
 			<div class="space-line"></div>
@@ -45,12 +65,12 @@
 				</span>
 			</div>
 			<div class="space-line"></div>
-			<h5>4. if</h5>
+			<h5>3. if</h5>
 			<div id="app-3">
 				<p v-if="seen">이제 나를 볼 수 있어요</p>
 			</div>
 			<div class="space-line"></div>
-			<h5>5. for</h5>
+			<h5>4. for</h5>
 			<div id="app-4">
 				<ol>
 					<!-- <li v-for="(obj, index) in resultList" v-if="index > 0"> -->
@@ -106,6 +126,7 @@ var _page = null;
 function pageLoad() {
 	_page = new fn_page();
 	_page.intialize();
+	_page.intializeEvent();
 }
 
 function fn_page() {
@@ -115,7 +136,7 @@ function fn_page() {
 
 		// 1. Html Binding
 		var app = new Vue({
-			el: '#app',
+			el: '#app-1',
 			data: jsonData
 		});
 
@@ -216,13 +237,15 @@ function fn_page() {
 					{ id: 2, text: 'Whatever else humans are supposed to eat' }
 				]
 			}
-			});
-
-
+		});
 	};
 
 	this.intializeEvent = function() {
-
+		$("[data-menu]","#menu-list").each(function(){
+			$(this).on("click", function() {
+				location.href = "#" + $(this).attr("data-menu");
+			});
+		});
 	};
 }
 </script>
